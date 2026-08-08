@@ -588,6 +588,8 @@ function drawOscillo(d, col) {
 }
 
 // ---- FREQUENCY BARS (REDESIGNED + SLOPE/BEVEL) ----
+
+    // ---- FREQUENCY BARS (CLEAN FLAT) ----
 function drawBars(d, col) {
   const N = 50;
   const gap = 3;
@@ -664,16 +666,17 @@ function drawBars(d, col) {
     const intensity = norm;
     const r = Math.min(barW / 2, 3);
 
-    // 1. Main bar body with vertical gradient
+    // Main bar body with vertical gradient
     const g = ctx.createLinearGradient(x, H, x, y);
     g.addColorStop(0, col.p);
-    g.addColorStop(0.50, col.s);
-    g.addColorStop(1, `rgba(255,255,255,${0.32 + intensity * 0.42})`);
+    g.addColorStop(0.55, col.s);
+    g.addColorStop(1, `rgba(255,255,255,${0.28 + intensity * 0.42})`);
 
     ctx.fillStyle = g;
     ctx.shadowColor = col.p;
     ctx.shadowBlur = intensity > 0.55 ? 10 : 0;
 
+    // Clean rounded-top bar (no 3D bevels / steep slopes)
     ctx.beginPath();
     ctx.moveTo(x + r, y);
     ctx.arcTo(x + barW, y, x + barW, y + r, r);
@@ -684,47 +687,6 @@ function drawBars(d, col) {
     ctx.closePath();
     ctx.fill();
     ctx.shadowBlur = 0;
-
-    // 2. STEEP SLOPE: strong left-edge bevel highlight (creates 3D depth)
-    if (barW > 2) {
-      const bevelW = Math.max(1.2, barW * 0.28);
-      ctx.fillStyle = `rgba(255,255,255,${0.14 + intensity * 0.22})`;
-      ctx.beginPath();
-      ctx.moveTo(x, H);
-      ctx.lineTo(x, y + r);
-      ctx.arcTo(x, y, x + bevelW, y, r);
-      ctx.lineTo(x + bevelW, H);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    // 3. Right-edge dark slope shadow (complements the left bevel)
-    if (barW > 3) {
-      const shadowW = Math.max(1, barW * 0.18);
-      ctx.fillStyle = `rgba(0,0,0,${0.18 + intensity * 0.12})`;
-      ctx.beginPath();
-      ctx.moveTo(x + barW, H);
-      ctx.lineTo(x + barW, y + r);
-      ctx.arcTo(x + barW, y, x + barW - shadowW, y, r);
-      ctx.lineTo(x + barW - shadowW, H);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    // 4. Top cap steep white highlight (peak slope)
-    if (h > minH * 2) {
-      ctx.fillStyle = `rgba(255,255,255,${0.10 + intensity * 0.20})`;
-      const capH = Math.min(3 + intensity * 4, h * 0.25);
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.arcTo(x + barW, y, x + barW, y + capH, r);
-      ctx.lineTo(x + barW, y + capH);
-      ctx.lineTo(x, y + capH);
-      ctx.lineTo(x, y + r);
-      ctx.arcTo(x, y, x + r, y, r);
-      ctx.closePath();
-      ctx.fill();
-    }
   }
 
   // Reflection
@@ -742,7 +704,7 @@ function drawBars(d, col) {
   }
   ctx.restore();
 }
-
+  
 // ---- PARTICLES ----
 function drawParticles(d, col) {
   const bass = avgf(d.f, 0, 15) / 255;
