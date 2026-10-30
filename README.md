@@ -11,3 +11,7 @@ Open `Sonicv2.html` in a browser, or serve the project folder with Python:
 Then visit http://localhost:8000/Sonicv2.html. After edits, reload the page and review the affected controls and visual modes.
 
 Browser audio policies may require a direct user action before sound starts.
+
+## Personalize the page
+
+Use `Sonicv2.html` to review and edit the visible labels, song-list text, and page presentation. The page references Google Fonts; preserve those font links if you want to keep the current typefaces. Keep `Sonicv2.html` at its current location, or update any links that point to it if you rename or move it. If you add local assets, keep their paths aligned with their locations relative to the HTML file.
