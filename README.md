@@ -12,35 +12,35 @@ Then visit http://localhost:8000/Sonicv2.html.
 
 Browser audio policies may require a direct user action before sound starts.
 
-## Manual review checklist
+## Browser and platform reliability checklist
 
-These are actions to perform, not verified results:
+These are review steps, not verified results. The repository overview identifies a single HTML page and a Google Fonts request; it does not identify a build system or test suite.
 
-- Open `Sonicv2.html` and review the visualiser, song list, and available controls.
-- Try the visual modes and colour options. Observe how the display responds while audio is playing, if playback is available.
-- Choose a non-sensitive audio file with the upload control, then try the playback controls. Check the visible response to selecting, playing, and pausing a track.
-- Check any local image, audio, or other file paths referenced by the page against the files present. For a user-selected track, check the upload interaction in the browser rather than expecting a repository asset.
-- Inspect the page at a narrow mobile-sized viewport and a wide desktop-sized viewport. Check that the visualiser, track list, and controls remain visible and usable.
+- Review `Sonicv2.html` in current versions of Chrome, Firefox, Safari, and Edge relevant to the intended audience. Include mobile Chrome and mobile Safari if phone use is intended. Record the browser, device or viewport, and any issue found; checking one browser does not establish compatibility in others.
+- Inspect the browser console and network panel when loading the page and using its visual and playback controls. Investigate errors, failed requests, and unexpected warnings, including failures to load Google Fonts or local files.
+- Check any local file references in `Sonicv2.html` against files present in the repository, verifying relative paths, spelling, and letter case. The uploaded track is selected by the visitor, so it is not expected to be a repository asset.
+- Check the Google Fonts request for Inter and Space Grotesk, and whether the page remains legible when the external request is unavailable.
+- At narrow mobile and wide desktop sizes, check that the visualiser, song list, upload input, and controls remain visible and usable. Select a non-sensitive audio file and review selection, playback, pause, and the visual response where available. Browser audio policies may require a direct user action.
 
-## Asset and loading review checklist
+## Content and asset review checklist
 
 These are review steps, not verified results or measured performance claims:
 
-- Inspect `Sonicv2.html` for local image, audio, and font paths; verify each referenced local file exists at the specified path. The upload control accepts a user-selected track, so do not expect that track to be a repository asset.
-- If the page references bundled media, review its size and whether it is appropriate for its use. Replace unnecessarily large assets when practical, and remove files only after confirming they are not used by the page.
-- Confirm that the Google Fonts request for Inter and Space Grotesk is intentional and limited to typography the page uses. Check readability if the external request is unavailable.
+- Review the visualiser, song list, available modes, colour options, and visible labels for intended content.
+- If the page references bundled media, check that each local path resolves and review whether the asset size is appropriate for its use. Replace unnecessarily large assets when practical; remove files only after confirming the page does not use them.
+- Treat Google Fonts as an external dependency. Confirm the request is intentional, avoid requesting unused styles, and check readability if it fails.
 
 ## Accessibility review checklist
 
 These are future review checks, not claims that accessibility has been verified:
 
 - Navigate `Sonicv2.html` using only the keyboard. Check that the upload input, playback controls, song-list interactions, and visual mode and colour options can be reached and operated.
-- Check for a clearly visible focus indicator on each focused control and confirm that focus order follows the page’s task flow.
-- Check that playback, upload, mode, and colour controls have meaningful accessible names and that the selected track or playback state is communicated in text, not only by visual changes.
+- Check for a clearly visible focus indicator on each control and confirm that focus order follows the page's task flow.
+- Check that playback, upload, mode, and colour controls have meaningful accessible names. Check that track selection and playback state are communicated in text, not only by visual changes.
 - Check text, control, and focus-indicator contrast against the page background and within the visualiser. Do not rely on colour alone to distinguish modes or states.
-- If the page references images, check their alternatives in the HTML; if a visualiser conveys information not otherwise available, consider what text equivalent or status information a user would need.
-- Check the visualiser with reduced motion enabled. Review whether its animation can be reduced or stopped, and whether the controls and track information remain usable without motion.
+- Review image alternatives in the HTML if images are present. If the visualiser conveys information not otherwise available, consider what text equivalent or status information a user would need.
+- Check the visualiser with reduced motion enabled. Review whether animation can be reduced or stopped and whether controls and track information remain usable without motion.
 
 ## Personalize the page
 
-Use `Sonicv2.html` to review and edit the visible labels, song-list text, and page presentation. The page references Google Fonts; preserve those font links if you want to keep the current typefaces. Keep `Sonicv2.html` at its current location, or update any links that point to it if you rename or move it. If you add local assets, keep their paths aligned with their locations relative to the HTML file. Repeat the relevant manual review steps above after changes.
+Use `Sonicv2.html` to edit visible labels, song-list text, and page presentation. Preserve the Google Fonts links if you want to keep the current typefaces. Keep `Sonicv2.html` at its current location, or update links that point to it if you rename or move it. If you add local assets, keep their paths aligned with their locations relative to the HTML file. Repeat the relevant browser, asset, and accessibility checks after changes.
