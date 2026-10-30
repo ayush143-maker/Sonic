@@ -22,6 +22,14 @@ These are actions to perform, not verified results:
 - Check any local image, audio, or other file paths referenced by the page against the files present. For a user-selected track, check the upload interaction in the browser rather than expecting a repository asset.
 - Inspect the page at a narrow mobile-sized viewport and a wide desktop-sized viewport. Check that the visualiser, track list, and controls remain visible and usable.
 
+## Asset and loading review checklist
+
+These are review steps, not verified results or measured performance claims:
+
+- Inspect `Sonicv2.html` for local image, audio, and font paths; verify each referenced local file exists at the specified path. The upload control accepts a user-selected track, so do not expect that track to be a repository asset.
+- If the page references bundled media, review its size and whether it is appropriate for its use. Replace unnecessarily large assets when practical, and remove files only after confirming they are not used by the page.
+- Confirm that the Google Fonts request for Inter and Space Grotesk is intentional and limited to typography the page uses. Check readability if the external request is unavailable.
+
 ## Accessibility review checklist
 
 These are future review checks, not claims that accessibility has been verified:
