@@ -46,3 +46,9 @@ These are checks to perform, not verified results:
 - [ ] Select a non-sensitive audio file and review selection, playback, pause, and visual response where available. Note the browser and viewport when recording issues.
 - [ ] Use the keyboard to check access to controls, focus visibility, labels, and interaction order. Check contrast and whether important track or playback state is conveyed in text as well as visually.
 - [ ] If the visualiser animates, check it with reduced motion enabled and whether animation can be reduced or stopped.
+
+## Final release review
+
+- Confirm the documented starting point still matches the files present at the repository root.
+- Test with network access available and keep a sensible fallback for externally loaded resources.
+- Review the published result once on a narrow screen and once on a wider screen; treat this as a release check, not an automated test report.
