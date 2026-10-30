@@ -1,6 +1,6 @@
 # Sonic
 
-A browser-based music visualiser with multiple visual modes, colour options, track upload, playback controls, and a song list. The main entry point is `Sonicv2.html`. Visitors can choose an audio file through the upload control and use the available visual and playback controls. No package installation is required.
+A browser-based music visualiser with multiple visual modes, colour options, track upload, playback controls, and a song list. `Sonicv2.html` is the main entry point. Visitors can choose an audio file through the upload control and use the available visual and playback controls. No package installation is required.
 
 ## Preview locally
 
