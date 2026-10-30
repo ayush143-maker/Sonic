@@ -4,7 +4,7 @@ A browser-based music visualiser with multiple visual modes, colour options, tra
 
 ## Preview locally
 
-Open `Sonicv2.html` in a modern browser, or serve the project folder with Python:
+Open `Sonicv2.html` in a browser, or serve the project folder with Python:
 
     python -m http.server 8000
 
