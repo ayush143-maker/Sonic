@@ -1,6 +1,6 @@
 # Sonic
 
-Sonic is a browser-based music visualiser. Its page provides visual modes, colour options, track upload, playback controls, and a song list. `Sonicv2.html` is the entry page. Tracks selected through the upload control are visitor-provided, not repository assets.
+Sonic is a browser-based music visualiser. `Sonicv2.html` is the entry page, with audio playback, a song list, selectable visual modes, and colour themes.
 
 ## Preview locally
 
@@ -10,18 +10,22 @@ Open `Sonicv2.html` in a browser, or serve the project folder with Python:
 python -m http.server 8000
 ```
 
-Then visit <http://localhost:8000/Sonicv2.html>.
+Then visit <http://localhost:8000/Sonicv2.html>. Audio may require a direct user action before playback, depending on browser policy.
 
-Browser audio policies may require a direct user action before sound starts.
+## Add and play tracks
+
+Choose files with the upload control or drop them on the visualiser. The handler accepts filenames ending in MP3, WAV, M4A, OGG, FLAC, or WEBM; unsupported extensions are skipped with a toast. The page derives each track title from its filename. The Songs panel shows tracks and durations: select a track to play it, or use its delete control to remove it.
+
+Playback controls include play/pause, previous, next, shuffle, repeat, and a clickable progress bar for seeking. Space toggles playback, the left and right arrow keys move between tracks, and F toggles fullscreen. Repeat replays the current song when it ends. Without repeat, playback advances; with shuffle on, previous, next, and automatic advancement choose a random track.
+
+Choose among Wave Mesh, Oscilloscope, Frequency Bars, Particles, and Fourier Wave visualisations, and Emerald, Azure, or Blush themes. The visualiser uses a Web Audio API analyser connected to the audio element and speakers to read frequency and time-domain data.
+
+## Track storage and limits
+
+Tracks and metadata are saved in IndexedDB, in database `SonicDB4` and object store `tracks`. On startup, records older than 24 hours are deleted and the remaining tracks are loaded. Deleting a track from the Songs panel also deletes its stored record. This is browser-local storage, not a server library; browser storage quotas and user-cleared site data can affect availability.
+
+If IndexedDB initialization fails, the page shows “Storage unavailable. Using memory only.” However, adding tracks still calls the IndexedDB write function; the source does not provide a separate in-memory upload path. Treat that warning as a limitation, not a guarantee that uploads will work without IndexedDB.
 
 ## Editing
 
-Edit visible labels, song-list text, and presentation in `Sonicv2.html`. If local assets are added, moved, or renamed, update their relative references and preserve exact filenames and letter case. The page requests Inter and Space Grotesk from Google Fonts, so those fonts require network access; check the fallback typography if the requests fail.
-
-Review the page in a browser at narrow and wide screen sizes. You can also select a non-sensitive audio file to review selection, playback, pause, and visual response where available. Use the keyboard to check control access, focus visibility, labels, and interaction order. If the visualiser animates, check its behavior with reduced motion enabled.
-
-A selected track should not be assumed private: review how the page and browser handle it before using sensitive audio. Browser-delivered values are visible to visitors; do not put credentials or secrets in tracked files.
-
-## Repository map
-
-- `Sonicv2.html` — page entry point and location for visible copy and presentation.
+Edit visible labels and presentation in `Sonicv2.html`. Inter and Space Grotesk load from Google Fonts, so typography may fall back when offline. Review file selection, playback, deletion, keyboard controls, and visual response in a browser; avoid sensitive audio when testing.
