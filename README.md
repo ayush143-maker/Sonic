@@ -52,3 +52,7 @@ These are checks to perform, not verified results:
 - Confirm the documented starting point still matches the files present at the repository root.
 - Test with network access available and keep a sensible fallback for externally loaded resources.
 - Review the published result once on a narrow screen and once on a wider screen; treat this as a release check, not an automated test report.
+
+## Repository map
+
+- `Sonicv2.html` — additional HTML page.
