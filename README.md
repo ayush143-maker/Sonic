@@ -12,6 +12,12 @@ Then visit http://localhost:8000/Sonicv2.html.
 
 Browser audio policies may require a direct user action before sound starts.
 
+## Configuration and data handling
+
+The supplied repository inventory lists `Sonicv2.html` and `README.md`, but no `.env.example` or separate configuration file. No environment variables or backend configuration are documented here. Do not add real credentials or other secrets to tracked files. Values embedded in HTML or otherwise delivered to the browser are visible to visitors and cannot be treated as secret.
+
+Visitors select an audio file using the page's upload control. Before using a private or sensitive track, review the page and browser behavior to understand how the selection is handled; do not assume that a browser-based upload control sends nothing or that selected data is private. The page also requests Google Fonts, so a visitor's browser may request fonts from Google.
+
 ## Browser and platform reliability checklist
 
 These are review steps, not verified results. The repository overview identifies a single HTML page and a Google Fonts request; it does not identify a build system or test suite.
